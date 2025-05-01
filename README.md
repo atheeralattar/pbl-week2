@@ -19,7 +19,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
--   Go (check `go.mod` for version, e.g., 1.18 or later) - [Link to Go installation](https://golang.org/doc/install)
+-   Go (check `go.mod` for version) - [Link to Go installation](https://golang.org/doc/install)
 -   Docker & Docker Compose (Recommended for running PostgreSQL easily) - [Link to Docker installation](https://docs.docker.com/get-docker/)
 -   Git
 
@@ -27,8 +27,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repository-url> # Replace with your repo URL
-    cd <project-directory>          # Replace with the cloned directory name
+    git clone <your-repository-url> # Replace with this repo URL
+    cd pbl-week2          # Replace with the cloned directory name
     ```
 
 2.  **Install Go dependencies:**
