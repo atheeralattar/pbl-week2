@@ -7,17 +7,17 @@
 package routes
 
 import (
-	"document-system/config"
-	"document-system/controllers"
+	"document-system/internal/config"
+	"document-system/internal/handlers"
 
 	"github.com/gin-gonic/gin"
 )
 
 func SetupRoutes() *gin.Engine {
 	r := gin.Default()
-	
+
 	// Initialize controllers
-	documentController := controllers.NewDocumentController(config.GetDB())
+	documentController := handlers.NewDocumentController(config.GetDB())
 
 	// Document routes
 	documentRoutes := r.Group("/documents")
@@ -30,4 +30,4 @@ func SetupRoutes() *gin.Engine {
 	}
 
 	return r
-} 
+}

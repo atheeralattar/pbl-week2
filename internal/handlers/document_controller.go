@@ -1,4 +1,3 @@
-
 // controllers/document_controller.go
 // This file contains the controller for the document resource
 // It defines the DocumentController struct and the NewDocumentController function
@@ -6,10 +5,10 @@
 // It uses the Gin framework to handle the HTTP requests
 // It uses the GORM library to interact with the database
 
-package controllers
+package handlers
 
 import (
-	"document-system/models"
+	"document-system/internal/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -100,4 +99,4 @@ func (dc *DocumentController) Delete(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gin.H{"message": "Document deleted"})
-} 
+}
