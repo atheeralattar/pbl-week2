@@ -19,10 +19,12 @@ import (
 var DB *gorm.DB
 
 func InitDB() {
+	log.Println("[DATABASE] Starting database initialization...")
+
 	// Load environment variables from .env file
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Printf("[DATABASE] Warning: Could not load .env file: %v", err)
 	}
 
 	// Build DSN from environment variables
@@ -33,23 +35,32 @@ func InitDB() {
 	port := os.Getenv("DB_PORT")
 	sslmode := os.Getenv("DB_SSLMODE")
 
+	log.Printf("[DATABASE] Connecting to database: host=%s, user=%s, dbname=%s, port=%s, sslmode=%s",
+		host, user, dbname, port, sslmode)
+
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s",
 		host, user, password, dbname, port, sslmode)
 
+	log.Println("[DATABASE] Attempting database connection...")
 	DB, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatal("Failed to connect to database: ", err)
+		log.Fatalf("[DATABASE] Failed to connect to database: %v", err)
 	}
-	fmt.Println("Database connected!")
+	log.Println("[DATABASE] Database connection established successfully!")
 
 	// Auto migrate the Document model
+	log.Println("[DATABASE] Starting database migration...")
 	err = DB.AutoMigrate(&models.Document{})
 	if err != nil {
-		log.Fatal("Failed to migrate database: ", err)
+		log.Fatalf("[DATABASE] Failed to migrate database: %v", err)
 	}
-	fmt.Println("Database Migrated!")
+	log.Println("[DATABASE] Database migration completed successfully!")
+	log.Println("[DATABASE] Database initialization complete")
 }
 
 func GetDB() *gorm.DB {
+	if DB == nil {
+		log.Println("[DATABASE] Warning: Database connection is nil")
+	}
 	return DB
 }

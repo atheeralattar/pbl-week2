@@ -1,4 +1,3 @@
-
 // models/document.go
 // This file contains the models for the document resource
 // It defines the Document struct and the DocumentModel struct
@@ -14,9 +13,9 @@ import (
 )
 
 type Document struct {
-	ID        uint      `json:"id" gorm:"primaryKey"`
+	ID        uint32    `json:"id" gorm:"primaryKey"`
 	Title     string    `json:"title" binding:"required"`
-	Content   string    `json:"content" binding:"required"`
+	Content   []byte    `json:"content" binding:"required"`
 	Author    string    `json:"author"`
 	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
@@ -62,4 +61,4 @@ func (m *DocumentModel) Update(doc *Document) error {
 // Delete removes a document
 func (m *DocumentModel) Delete(id string) error {
 	return m.DB.Delete(&Document{}, id).Error
-} 
+}
