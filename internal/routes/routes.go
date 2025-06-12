@@ -7,9 +7,10 @@
 package routes
 
 import (
-	"document-system/internal/config"
-	"document-system/internal/handlers"
 	"log"
+
+	"github.com/atheeralattar/pbl-week2/internal/config"
+	"github.com/atheeralattar/pbl-week2/internal/handlers"
 
 	"github.com/gin-gonic/gin"
 )

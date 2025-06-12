@@ -5,17 +5,17 @@ services:
     image: postgres:14
     container_name: document_system_db
     environment:
-      POSTGRES_USER: ${DB_USER:-postgres}
-      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_USER: ${DB_USER:-doc_db_admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-SecurePass889}
       POSTGRES_DB: ${DB_NAME:-documents_db}
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "${DB_PORT:-5671}:5671"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - document_network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres}"]
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-doc_db_admin} -d ${DB_NAME:-documents_db}"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -28,14 +28,14 @@ services:
     container_name: document_system_app
     environment:
       DB_HOST: db
-      DB_USER: ${DB_USER:-postgres}
-      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      DB_USER: ${DB_USER:-doc_db_admin}
+      DB_PASSWORD: ${DB_PASSWORD:-SecurePass889}
       DB_NAME: ${DB_NAME:-documents_db}
-      DB_PORT: 5432
+      DB_PORT: ${DB_PORT:-5671}
       DB_SSLMODE: ${DB_SSLMODE:-disable}
-      SERVER_PORT: 8080
+      SERVER_PORT: ${SERVER_PORT:-3976}
     ports:
-      - "${SERVER_PORT:-8080}:8080"
+      - "${SERVER_PORT:-3976}:${SERVER_PORT:-3976}"
     depends_on:
       db:
         condition: service_healthy

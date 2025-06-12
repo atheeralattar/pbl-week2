@@ -1,10 +1,11 @@
 package main
 
 import (
-	"document-system/internal/config"
-	"document-system/internal/routes"
 	"log"
 	"os"
+
+	"github.com/atheeralattar/pbl-week2/internal/config"
+	"github.com/atheeralattar/pbl-week2/internal/routes"
 
 	"github.com/joho/godotenv"
 )

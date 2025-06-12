@@ -6,10 +6,11 @@
 package config
 
 import (
-	"document-system/internal/models"
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/atheeralattar/pbl-week2/internal/models"
 
 	"github.com/joho/godotenv"
 	"gorm.io/driver/postgres"

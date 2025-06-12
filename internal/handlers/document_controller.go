@@ -8,9 +8,10 @@
 package handlers
 
 import (
-	"document-system/internal/models"
 	"log"
 	"net/http"
+
+	"github.com/atheeralattar/pbl-week2/internal/models"
 
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
